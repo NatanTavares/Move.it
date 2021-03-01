@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import Head from 'next/head';
 
+import { GithubUserProvider } from "../contexts/GithubUserContext";
 import { ChallengesProvider } from "../contexts/ChallengesContext";
 
 import { ExperienceBar } from "../components/ExperienceBar";
@@ -20,32 +21,34 @@ interface HomeProps {
 
 export default function Home({ level, currentExperience, challengesCompleted }: HomeProps) {
   return (
-    <ChallengesProvider 
-      level={level}
-      currentExperience={currentExperience}
-      challengesCompleted={challengesCompleted}
-    >
-      <div className={styles.container}>
-        <Head>
-          <title>Início | move.it</title>
-        </Head>
+    <GithubUserProvider>
+      <ChallengesProvider 
+        level={level}
+        currentExperience={currentExperience}
+        challengesCompleted={challengesCompleted}
+      >
+        <div className={styles.container}>
+          <Head>
+            <title>Início | move.it</title>
+          </Head>
 
-        <ExperienceBar />
+            <ExperienceBar />
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
-    </ChallengesProvider>
+            <CountdownProvider>
+              <section>
+                <div>
+                  <Profile />
+                  <CompletedChallenges />
+                  <Countdown />
+                </div>
+                <div>
+                  <ChallengeBox />
+                </div>
+              </section>
+            </CountdownProvider>
+        </div>
+      </ChallengesProvider>
+    </GithubUserProvider>
   )
 }
 
