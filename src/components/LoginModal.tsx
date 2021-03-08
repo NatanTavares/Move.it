@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
-import { GithubUserContext } from '../contexts/GithubUserContext';
+import { UserContext } from '../contexts/UserContext';
 
 import styles from '../styles/components/LoginModal.module.css';
 
 export function LoginModal() {
-  const { closeLoginModal, handleInputValue, inputUsernameValue } = useContext(GithubUserContext);
+  const { login, handleInputValue, inputUsernameValue } = useContext(UserContext);
 
   return (
     <div className={styles.overlay}>
@@ -36,7 +36,7 @@ export function LoginModal() {
               />
               <button 
                 type="button" 
-                onClick={closeLoginModal}
+                onClick={login}
                 className={inputUsernameValue ? styles.confirmButton : undefined}
               >
                 <img 
