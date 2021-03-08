@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import Head from 'next/head';
 
-import { GithubUserProvider } from "../contexts/GithubUserContext";
+import { UserProvider } from "../contexts/UserContext";
 import { ChallengesProvider } from "../contexts/ChallengesContext";
 
 import { ExperienceBar } from "../components/ExperienceBar";
@@ -10,6 +10,7 @@ import { Profile } from "../components/Profile";
 import { CompletedChallenges } from "../components/CompletedChallenges";
 import { Countdown } from "../components/Countdown";
 import { ChallengeBox } from "../components/ChallengeBox";
+import { Sidebar } from "../components/Sidebar";
 
 import styles from '../styles/pages/Home.module.css';
 
@@ -21,7 +22,7 @@ interface HomeProps {
 
 export default function Home({ level, currentExperience, challengesCompleted }: HomeProps) {
   return (
-    <GithubUserProvider>
+    <UserProvider>
       <ChallengesProvider 
         level={level}
         currentExperience={currentExperience}
@@ -31,7 +32,7 @@ export default function Home({ level, currentExperience, challengesCompleted }: 
           <Head>
             <title>Início | move.it</title>
           </Head>
-
+            <Sidebar />
             <ExperienceBar />
 
             <CountdownProvider>
@@ -48,7 +49,7 @@ export default function Home({ level, currentExperience, challengesCompleted }: 
             </CountdownProvider>
         </div>
       </ChallengesProvider>
-    </GithubUserProvider>
+    </UserProvider>
   )
 }
 
