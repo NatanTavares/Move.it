@@ -116,6 +116,7 @@
   border-radius: 0 5px 5px 0;
 
   background: var(--blue-dark);
+  outline: none;
 }
 
 .container main section .inputUsername .confirmButton {
